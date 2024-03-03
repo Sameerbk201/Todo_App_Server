@@ -3,9 +3,11 @@ const sqlite3 = require("sqlite3").verbose();
 const cors = require("cors");
 const app = express();
 const port = 5000;
-
+const path = require("path");
 app.use(cors());
-
+app.use(express.json());
+/* serve static file */
+app.use(express.static(path.join(__dirname, "build")));
 // Create and connect to SQLite database
 const db = new sqlite3.Database("./todo.db");
 
@@ -95,6 +97,10 @@ app.delete("/todos/:id", (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+});
+// Serve React app for any other routes
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 // Start server
