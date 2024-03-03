@@ -1,0 +1,23 @@
+@baseUrl = http://localhost:3000
+
+### GET /todos
+GET {{baseUrl}}/todos
+
+### POST /todos
+POST {{baseUrl}}/todos
+Content-Type: application/json
+
+{
+    "task": "Buy groc2eries1"
+}
+
+### PUT /todos/:id (Replace :id with actual id)
+PUT {{baseUrl}}/todos/1
+Content-Type: application/json
+
+{
+    "task": "update Buy milk"
+}
+
+### DELETE /todos/:id (Replace :id with actual id)
+DELETE {{baseUrl}}/todos/:id
