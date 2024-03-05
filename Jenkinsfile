@@ -36,6 +36,10 @@ pipeline {
                     try {
                         echo 'analysis began'
                         sh 'npm --version' 
+                        withSonarQubeEnv('sonar'){
+                            sh "npm install sonar-scanner"
+                            sh "npm run sonar"
+                        }
                     } catch (err) {
                         echo 'npm --version error'
                         currentBuild.result = 'FAILURE'
