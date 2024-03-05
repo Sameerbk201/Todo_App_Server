@@ -41,7 +41,7 @@ pipeline {
                             sh "npm run sonar"
                         }
                     } catch (err) {
-                        echo 'npm --version error'
+                        echo 'analyze error'
                         currentBuild.result = 'FAILURE'
                         error(err)
                     }
